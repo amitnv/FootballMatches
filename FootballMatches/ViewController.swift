@@ -8,10 +8,16 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    //MARK:- Variables
     var matches = Matches()
     var matchDetails = [Match]()
     var winnerIDs: [Int] = []
+    
+    //MARK:- IBOutlet
     @IBOutlet weak var tableViewForMatches: UITableView!
+    
+    //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -28,8 +34,8 @@ class ViewController: UIViewController {
                 self.tableViewForMatches.reloadData()
             }
         }
-        
     }
+    
     func getTodaysDate() -> String{
         let date = Date()
         return formatDate(date: date)
@@ -48,6 +54,7 @@ class ViewController: UIViewController {
     }
 }
 
+//MARK:- Extension
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return matchDetails.count
@@ -68,6 +75,4 @@ extension ViewController: UITableViewDataSource {
         
         return cell!
     }
-    
-    
 }

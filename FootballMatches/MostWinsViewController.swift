@@ -8,15 +8,20 @@
 import UIKit
 
 class MostWinsViewController: UIViewController {
-    var matches = Matches()
-    var matchDetails = [Match]()
-    var winnerIDs: [Int] = []
+    
+    //MARK:- Variables
     var newDet: String = ""
+    
+    //MARK:- IBOutlet
     @IBOutlet weak var lblTeamName: UILabel!
+    
+    //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         self.lblTeamName.text = self.newDet
     }
+    
+    //MARK:- Function
     func setDataReference(dataReference: String)
     {
         self.newDet = dataReference

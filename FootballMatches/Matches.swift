@@ -200,6 +200,10 @@ class JSONNull: Codable, Hashable {
 }
 
 /*
+ 
+ SAMPLE JSON
+ ___________
+ 
  {
      "count": 28,
      "filters": {},

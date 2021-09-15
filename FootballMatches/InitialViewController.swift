@@ -8,14 +8,18 @@
 import UIKit
 
 class InitialViewController: UIViewController {
-    @IBOutlet weak var showMatches: UIButton!
-    @IBOutlet weak var mostWins: UIButton!
     
+    //MARK:- Variables
     var matches = Matches()
     var matchDetails = [Match]()
     var winnerIDs: [Int] = []
     var teamWithHighestWins : String?
     
+    //MARK:- IBOutlets
+    @IBOutlet weak var showMatches: UIButton!
+    @IBOutlet weak var mostWins: UIButton!
+    
+    //MARK:- IBAction
     @IBAction func mostWinsTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(withIdentifier: "MostWinsViewController") as! MostWinsViewController
@@ -24,8 +28,15 @@ class InitialViewController: UIViewController {
                 self.navigationController?.pushViewController(secondVC, animated: true)
                 print("filter button tapped")
     }
+    
+    //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        callFootballAPI()
+    }
+    
+    //MARK:- FUNCTIONS
+    func callFootballAPI() {
         let service = Service(baseUrl: "https://api.football-data.org/v2/competitions/2001/matches?dateFrom=\(dateThirtyDaysback())&dateTo=")
         service.getAllMatches(todaysDate: getTodaysDate())
         service.completitonHandler { [weak self](matches, status, message) in
@@ -40,22 +51,25 @@ class InitialViewController: UIViewController {
             
         }
     }
+    
     func getTodaysDate() -> String{
         let date = Date()
         return formatDate(date: date)
     }
+    
     func dateThirtyDaysback() -> String{
         let toDate = Date()
         let fromDate = Calendar.current.date(byAdding: .day, value: -30, to: toDate)
         return formatDate(date: fromDate!)
-        
     }
+    
     func formatDate(date : Date) -> String{
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd"
         let dateString = df.string(from: date)
         return dateString
     }
+    
     func compareWins() {
         //print result at each level
         //count of matches
@@ -83,19 +97,20 @@ class InitialViewController: UIViewController {
                 }
             }
         }
-        print(winnerIDs)
+        
+//        print(winnerIDs)
         
         //count the number of WinnerIds repeated and place them in a dictionary
         let countOfEachID = winnerIDs.reduce(into: [:]) { $0[$1, default: 0] += 1 }
-        print(countOfEachID)
+//        print(countOfEachID)
         
         //sort them in decending order of values
         let sortedByValueDictionary = countOfEachID.sorted { $0.1 > $1.1 }
-        print(sortedByValueDictionary)
+//        print(sortedByValueDictionary)
         
         //Show the first element's key which will have the highest value after sorting
         let firstValue = sortedByValueDictionary.first?.key
-        print(firstValue!)
+//        print(firstValue!)
         
         
         for lookupTeamName in matchDetails {

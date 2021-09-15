@@ -10,6 +10,7 @@ import Alamofire
 
 class Service {
     
+    //MARK:- Variables
     fileprivate var baseUrl = ""
     typealias matchesCallBack = (_ matches:Matches?, _ status: Bool, _ message: String) -> Void
     var callBack: matchesCallBack?
