@@ -10,8 +10,6 @@ import Foundation
 struct Area: Codable {
     var id: Int?
     var name: String?
-    var countryCode: String?
-    var ensignUrl: String?
-    var parentAreaId: Int?
-    var parentArea: String?
 }
+
+

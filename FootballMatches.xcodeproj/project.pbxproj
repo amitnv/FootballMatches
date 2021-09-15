@@ -21,6 +21,7 @@
 		7BD9A89326F0F33000148AD0 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD9A89226F0F33000148AD0 /* Service.swift */; };
 		7BD9A89526F0F56900148AD0 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD9A89426F0F56900148AD0 /* Matches.swift */; };
 		7BD9A8D326F125FB00148AD0 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD9A8D226F125FB00148AD0 /* Area.swift */; };
+		7BD9A8D526F1F9DA00148AD0 /* MatchDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD9A8D426F1F9DA00148AD0 /* MatchDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		7BD9A89226F0F33000148AD0 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		7BD9A89426F0F56900148AD0 /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
 		7BD9A8D226F125FB00148AD0 /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
+		7BD9A8D426F1F9DA00148AD0 /* MatchDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetails.swift; sourceTree = "<group>"; };
 		9DE01525508C9AAED6866745 /* Pods_FootballMatches.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FootballMatches.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C75DB325D8D7E07DBC5D56CF /* Pods-FootballMatchesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballMatchesTests.release.xcconfig"; path = "Target Support Files/Pods-FootballMatchesTests/Pods-FootballMatchesTests.release.xcconfig"; sourceTree = "<group>"; };
 		D2C5829CC0882D9333C71008 /* Pods-FootballMatches-FootballMatchesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballMatches-FootballMatchesUITests.debug.xcconfig"; path = "Target Support Files/Pods-FootballMatches-FootballMatchesUITests/Pods-FootballMatches-FootballMatchesUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				7BD9A89226F0F33000148AD0 /* Service.swift */,
 				7BD9A89426F0F56900148AD0 /* Matches.swift */,
 				7BD9A8D226F125FB00148AD0 /* Area.swift */,
+				7BD9A8D426F1F9DA00148AD0 /* MatchDetails.swift */,
 				7BD9A86826F0F22C00148AD0 /* Main.storyboard */,
 				7BD9A86B26F0F22E00148AD0 /* Assets.xcassets */,
 				7BD9A86D26F0F22E00148AD0 /* LaunchScreen.storyboard */,
@@ -417,6 +420,7 @@
 			files = (
 				7BD9A86726F0F22C00148AD0 /* ViewController.swift in Sources */,
 				7BD9A89326F0F33000148AD0 /* Service.swift in Sources */,
+				7BD9A8D526F1F9DA00148AD0 /* MatchDetails.swift in Sources */,
 				7BD9A86326F0F22C00148AD0 /* AppDelegate.swift in Sources */,
 				7BD9A89526F0F56900148AD0 /* Matches.swift in Sources */,
 				7BD9A8D326F125FB00148AD0 /* Area.swift in Sources */,
