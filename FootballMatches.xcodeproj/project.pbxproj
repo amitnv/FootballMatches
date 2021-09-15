@@ -10,6 +10,8 @@
 		0D44E5ED95401FAE8021F7DA /* Pods_FootballMatches_FootballMatchesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E11B682E90B68EA6F5AC94 /* Pods_FootballMatches_FootballMatchesUITests.framework */; };
 		22F399DB3FA068D1BAF70421 /* Pods_FootballMatchesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED7FB36A2DEDCB8DA4FC3591 /* Pods_FootballMatchesTests.framework */; };
 		7B74523C1E4A511C3A99375A /* Pods_FootballMatches.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE01525508C9AAED6866745 /* Pods_FootballMatches.framework */; };
+		7B8866B826F287EE005E33C5 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8866B726F287EE005E33C5 /* InitialViewController.swift */; };
+		7B8866BA26F28CE8005E33C5 /* MostWinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8866B926F28CE8005E33C5 /* MostWinsViewController.swift */; };
 		7BD9A86326F0F22C00148AD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD9A86226F0F22C00148AD0 /* AppDelegate.swift */; };
 		7BD9A86526F0F22C00148AD0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD9A86426F0F22C00148AD0 /* SceneDelegate.swift */; };
 		7BD9A86726F0F22C00148AD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD9A86626F0F22C00148AD0 /* ViewController.swift */; };
@@ -43,6 +45,8 @@
 		0F8C8DDA7C24F412D15B0DD1 /* Pods-FootballMatches.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballMatches.debug.xcconfig"; path = "Target Support Files/Pods-FootballMatches/Pods-FootballMatches.debug.xcconfig"; sourceTree = "<group>"; };
 		24E33FC322A09209300B9FEB /* Pods-FootballMatchesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballMatchesTests.debug.xcconfig"; path = "Target Support Files/Pods-FootballMatchesTests/Pods-FootballMatchesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		659B8C4011E2BADF387DA146 /* Pods-FootballMatches.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballMatches.release.xcconfig"; path = "Target Support Files/Pods-FootballMatches/Pods-FootballMatches.release.xcconfig"; sourceTree = "<group>"; };
+		7B8866B726F287EE005E33C5 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		7B8866B926F28CE8005E33C5 /* MostWinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostWinsViewController.swift; sourceTree = "<group>"; };
 		7BD9A85F26F0F22C00148AD0 /* FootballMatches.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FootballMatches.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD9A86226F0F22C00148AD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BD9A86426F0F22C00148AD0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,10 +139,12 @@
 			children = (
 				7BD9A86226F0F22C00148AD0 /* AppDelegate.swift */,
 				7BD9A86426F0F22C00148AD0 /* SceneDelegate.swift */,
-				7BD9A86626F0F22C00148AD0 /* ViewController.swift */,
 				7BD9A89226F0F33000148AD0 /* Service.swift */,
 				7BD9A89426F0F56900148AD0 /* Matches.swift */,
 				7BD9A86826F0F22C00148AD0 /* Main.storyboard */,
+				7BD9A86626F0F22C00148AD0 /* ViewController.swift */,
+				7B8866B726F287EE005E33C5 /* InitialViewController.swift */,
+				7B8866B926F28CE8005E33C5 /* MostWinsViewController.swift */,
 				7BD9A86B26F0F22E00148AD0 /* Assets.xcassets */,
 				7BD9A86D26F0F22E00148AD0 /* LaunchScreen.storyboard */,
 				7BD9A87026F0F22E00148AD0 /* Info.plist */,
@@ -415,6 +421,8 @@
 				7BD9A86726F0F22C00148AD0 /* ViewController.swift in Sources */,
 				7BD9A89326F0F33000148AD0 /* Service.swift in Sources */,
 				7BD9A86326F0F22C00148AD0 /* AppDelegate.swift in Sources */,
+				7B8866B826F287EE005E33C5 /* InitialViewController.swift in Sources */,
+				7B8866BA26F28CE8005E33C5 /* MostWinsViewController.swift in Sources */,
 				7BD9A89526F0F56900148AD0 /* Matches.swift in Sources */,
 				7BD9A86526F0F22C00148AD0 /* SceneDelegate.swift in Sources */,
 			);
