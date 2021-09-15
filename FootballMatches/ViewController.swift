@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableViewForMatches.dataSource = self
-        let service = Service(baseUrl: "https://api.football-data.org/v2/competitions/2001/matches?dateFrom=2021-08-14&dateTo=2021-09-13")
+        let service = Service(baseUrl: "https://api.football-data.org/v2/competitions/2001/matches?dateFrom=2020-08-11&dateTo=2021-09-13")
         service.getAllMatches(endPoint: "")
         service.completitonHandler { [weak self](matches, status, message) in
             if status {
@@ -43,7 +43,7 @@ extension ViewController: UITableViewDataSource {
         }
         let country = matchDetails[indexPath.row]
         cell?.textLabel?.text = (country.homeTeam.name ?? "") + " " + (country.awayTeam.name ?? "")
-        cell?.detailTextLabel?.text = country.score.winner.rawValue
+        cell?.detailTextLabel?.text = country.score.winner?.rawValue
         return cell!
     }
     

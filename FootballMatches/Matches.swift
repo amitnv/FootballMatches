@@ -23,6 +23,12 @@ struct Competition: Codable {
     var lastUpdated: String
 }
 
+// MARK: - Area
+struct Area: Codable {
+    var id: Int?
+    var name: String?
+}
+
 // MARK: - Filters
 struct Filters: Codable {
 }
@@ -33,10 +39,10 @@ struct Match: Codable {
     var season: Season
     var utcDate: String
     var status: Status
-    var matchday: JSONNull?
+    var matchday: Int?
     var stage: Stage
-    var group: JSONNull?
-    var lastUpdated: String
+    var group: String?
+    var lastUpdated: String?
     var odds: Odds
     var score: Score
     var homeTeam, awayTeam: Area
@@ -55,24 +61,67 @@ enum Msg: String, Codable {
 // MARK: - Referee
 struct Referee: Codable {
     var id: Int
-    var name, role: String
+    var name: String
+    var role: Role
     var nationality: Nationality?
 }
 
 enum Nationality: String, Codable {
+    case belarus = "Belarus"
+    case belgium = "Belgium"
+    case bulgaria = "Bulgaria"
+    case czechRepublic = "Czech Republic"
+    case england = "England"
+    case france = "France"
+    case germany = "Germany"
+    case greece = "Greece"
+    case israel = "Israel"
+    case italy = "Italy"
+    case latvia = "Latvia"
+    case lithuania = "Lithuania"
+    case netherlands = "Netherlands"
     case poland = "Poland"
+    case portugal = "Portugal"
+    case romania = "Romania"
+    case russia = "Russia"
+    case scotland = "Scotland"
+    case serbia = "Serbia"
+    case slovakia = "Slovakia"
+    case slovenia = "Slovenia"
     case spain = "Spain"
+    case sweden = "Sweden"
+    case switzerland = "Switzerland"
+    case turkey = "Turkey"
+}
+
+enum Role: String, Codable {
+    case additionalAssistantN1 = "ADDITIONAL_ASSISTANT_N1"
+    case additionalAssistantN2 = "ADDITIONAL_ASSISTANT_N2"
+    case assistantN1 = "ASSISTANT_N1"
+    case assistantN2 = "ASSISTANT_N2"
+    case assistantRefereeN1 = "ASSISTANT_REFEREE_N1"
+    case assistantRefereeN2 = "ASSISTANT_REFEREE_N2"
+    case fourthOfficial = "FOURTH_OFFICIAL"
+    case mainReferee = "MAIN_REFEREE"
+    case ref = "REF"
+    case referee = "REFEREE"
+    case videoAssisantRefereeN1 = "VIDEO_ASSISANT_REFEREE_N1"
+    case videoAssisantRefereeN2 = "VIDEO_ASSISANT_REFEREE_N2"
+    case videoAssistantReferee = "VIDEO_ASSISTANT_REFEREE"
+    case videoAssistantReferee2 = "VIDEO_ASSISTANT_REFEREE_2"
+    case videoAssistantReferee3 = "VIDEO_ASSISTANT_REFEREE_3"
 }
 
 // MARK: - Score
 struct Score: Codable {
-    var winner: Winner
+    var winner: Winner?
     var duration: Duration
     var fullTime, halfTime, extraTime, penalties: ExtraTime
 }
 
 enum Duration: String, Codable {
     case extraTime = "EXTRA_TIME"
+    case penaltyShootout = "PENALTY_SHOOTOUT"
     case regular = "REGULAR"
 }
 
@@ -95,10 +144,24 @@ struct Season: Codable {
 }
 
 enum Stage: String, Codable {
+    case groupStage = "GROUP_STAGE"
     case playOffRound = "PLAY_OFF_ROUND"
+    case preliminaryFinal = "PRELIMINARY_FINAL"
+    case preliminaryRound = "PRELIMINARY_ROUND"
+    case qualificationRound1 = "QUALIFICATION_ROUND_1"
+    case qualificationRound2 = "QUALIFICATION_ROUND_2"
+    case qualificationRound3 = "QUALIFICATION_ROUND_3"
+    case quarterFinals = "QUARTER_FINALS"
+    case roundOf16 = "ROUND_OF_16"
+    case semiFinals = "SEMI_FINALS"
+    case stageFINAL = "FINAL"
+    case the1StQualifyingRound = "1ST_QUALIFYING_ROUND"
+    case the2NdQualifyingRound = "2ND_QUALIFYING_ROUND"
+    case the3RDQualifyingRound = "3RD_QUALIFYING_ROUND"
 }
 
 enum Status: String, Codable {
+    case awarded = "AWARDED"
     case finished = "FINISHED"
 }
 
