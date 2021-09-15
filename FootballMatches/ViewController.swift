@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     var matches = Matches()
     var matchDetails = [Match]()
+    var winnerIDs: [Int] = []
     @IBOutlet weak var tableViewForMatches: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,23 +56,54 @@ class ViewController: UIViewController {
         for allStat in matchDetails {
             //check if match is finished or not because only finished matches will have result
             if allStat.status == Status.finished {
-                //check if match winner value was away_team or home_team and eliminate draw results
-                if allStat.score.winner != Winner.draw {
-                    print("PPP: \(String(describing: allStat.score.winner?.rawValue))")
-                    //if winner is away team then
-//                    allStat.awayTeam
-                    //take id of winner team
-                    //count the number of ids repeated
-                    //show the result
-                    
+                //check if match winner value was away_team or home_team and eliminate draw/null results
+                if allStat.score.winner != nil {
+                    if allStat.score.winner != Winner.draw {
+//                        print("PPP: \(String(describing: allStat.score.winner?.rawValue))")
+                        
+                        //Store hometeam or awayteam id based on that
+                        if allStat.score.winner?.rawValue == "AWAY_TEAM" {
+//                            print("ids are: \(String(describing: allStat.awayTeam.id))!")
+                            winnerIDs.append(allStat.awayTeam.id!)
+                            
+                        } else {
+//                            print("ids are: \(String(describing: allStat.homeTeam.id))!")
+                            winnerIDs.append(allStat.homeTeam.id!)
+                        }
+                    }
                 }
-                
             }
         }
+        print(winnerIDs)
         
-        //store hometeam or awayteam id based on that
-        //count the number of ids repeated
+        //count the number of WinnerIds repeated and place them in a dictionary
+        let countOfEachID = winnerIDs.reduce(into: [:]) { $0[$1, default: 0] += 1 }
+        print(countOfEachID)
+        
+        //sort them in decending order of values
+        let sortedByValueDictionary = countOfEachID.sorted { $0.1 > $1.1 }
+        print(sortedByValueDictionary)
+        
+        //Show the first element's key which will have the highest value after sorting
+        let firstValue = sortedByValueDictionary.first?.key
+        print(firstValue!)
+        
+        var teamWithHighestWins : String?
+        for lookupTeamName in matchDetails {
+            if lookupTeamName.awayTeam.id == firstValue! {
+                teamWithHighestWins = lookupTeamName.awayTeam.name
+            }
+            if lookupTeamName.homeTeam.id == firstValue! {
+                teamWithHighestWins = lookupTeamName.homeTeam.name
+            }
+        }
+        print(teamWithHighestWins!)
         //display alert based on that
+        let alert = UIAlertController(title: "The team with highest win is", message: "\(teamWithHighestWins!)", preferredStyle: .alert)
+        // add an action (button)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        // show the alert
+                self.present(alert, animated: true, completion: nil)
     }
 }
 

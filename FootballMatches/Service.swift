@@ -24,16 +24,16 @@ class Service {
             "Content-Type": "application/json"
         ]
         AF.request(self.baseUrl +  todaysDate, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers, interceptor: nil, requestModifier: nil).response { (responseData) in
-            print("We got response")
+//            print("We got response")
             guard let data = responseData.data else {
                 self.callBack?(nil, false, "")
                 return}
             do {
             let matches = try JSONDecoder().decode(Matches.self, from: data)
-                print("Matches == \(matches)")
+//                print("Matches == \(matches)")
                 self.callBack?(matches, true, "")
             } catch {
-                print("Error decoding == \(error)")
+//                print("Error decoding == \(error)")
                 self.callBack?(nil, false, error.localizedDescription)
             }
         }
