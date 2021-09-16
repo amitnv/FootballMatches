@@ -21,8 +21,8 @@ class Service {
     //MARK: - getAllMatches
     func getAllMatches(todaysDate: String) {
         let headers: HTTPHeaders = [
-            "X-Auth-Token": "ea3ba05e0caf424fa9b364c9d21e1e5b",
-            "Content-Type": "application/json"
+            "X-Auth-Token": AppConstants.apiKey,
+            "Content-Type": AppConstants.contentTypeJson
         ]
         AF.request(self.baseUrl +  todaysDate, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers, interceptor: nil, requestModifier: nil).response { (responseData) in
             print("We got response")
@@ -44,7 +44,5 @@ class Service {
     func completitonHandler(callBack: @escaping matchesCallBack) {
         self.callBack = callBack
     }
-    
-    
-    
+
 }

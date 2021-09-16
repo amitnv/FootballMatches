@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     //MARK:- Variables
     var matches = Matches()
     var matchDetails = [Match]()
-    var winnerIDs: [Int] = []
     
     //MARK:- IBOutlet
     @IBOutlet weak var tableViewForMatches: UITableView!
@@ -22,18 +21,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableViewForMatches.dataSource = self
-        let service = Service(baseUrl: "https://api.football-data.org/v2/competitions/2001/matches?dateFrom=\(dateThirtyDaysback())&dateTo=")
-        service.getAllMatches(todaysDate: getTodaysDate())
-        service.completitonHandler { [weak self](matches, status, message) in
-            if status {
-                guard let self = self else {return}
-                guard let _matches = matches else {return}
-                self.matches = _matches
-                guard (matches?.matches) != nil else {return}
-                self.matchDetails = _matches.matches!
-                self.tableViewForMatches.reloadData()
-            }
-        }
+        self.tableViewForMatches.reloadData()
     }
     
     func getTodaysDate() -> String{
@@ -48,7 +36,7 @@ class ViewController: UIViewController {
     }
     func formatDate(date : Date) -> String{
         let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd"
+        df.dateFormat = AppConstants.dateFormat
         let dateString = df.string(from: date)
         return dateString
     }
@@ -66,11 +54,11 @@ extension ViewController: UITableViewDataSource {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: "matchesCell")
         }
         let country = matchDetails[indexPath.row]
-        cell?.textLabel?.text = (country.homeTeam.name ?? "") + " v " + (country.awayTeam.name ?? "")
+        cell?.textLabel?.text = (country.homeTeam.name ?? "") + AppConstants.versus + (country.awayTeam.name ?? "")
         if((country.score.winner?.rawValue) != nil) {
-            cell?.detailTextLabel?.text = country.score.winner?.rawValue
+            cell?.detailTextLabel?.text = AppConstants.winner + country.score.winner!.rawValue
         } else {
-            cell?.detailTextLabel?.text = "SCHEDULED"
+            cell?.detailTextLabel?.text = AppConstants.cancelled
         }
         
         return cell!

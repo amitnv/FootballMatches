@@ -26,7 +26,16 @@ class InitialViewController: UIViewController {
         let passData = teamWithHighestWins!
         secondVC.setDataReference(dataReference: passData)
                 self.navigationController?.pushViewController(secondVC, animated: true)
-                print("filter button tapped")
+    }
+    
+    @IBAction func showMatchesTapped(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let secondVC = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+            let moveData = matches
+        secondVC.matches = moveData
+        let moveMatchDetails = matchDetails
+        secondVC.matchDetails = moveMatchDetails
+        self.navigationController?.pushViewController(secondVC, animated: true)
     }
     
     //MARK:- ViewDidLoad
@@ -128,5 +137,38 @@ class InitialViewController: UIViewController {
 //                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
 //        // show the alert
 //                self.present(alert, animated: true, completion: nil)
+    }
+}
+
+//Extension that adds more options in the interface builder for UIButton
+@IBDesignable extension UIButton {
+
+    @IBInspectable var borderWidth: CGFloat {
+        set {
+            layer.borderWidth = newValue
+        }
+        get {
+            return layer.borderWidth
+        }
+    }
+
+    @IBInspectable var cornerRadius: CGFloat {
+        set {
+            layer.cornerRadius = newValue
+        }
+        get {
+            return layer.cornerRadius
+        }
+    }
+
+    @IBInspectable var borderColor: UIColor? {
+        set {
+            guard let uiColor = newValue else { return }
+            layer.borderColor = uiColor.cgColor
+        }
+        get {
+            guard let color = layer.borderColor else { return nil }
+            return UIColor(cgColor: color)
+        }
     }
 }

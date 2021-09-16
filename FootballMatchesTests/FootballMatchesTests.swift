@@ -5,6 +5,7 @@
 //  Created by Amit Vaidya on 14/09/2021.
 //
 
+import Foundation
 import XCTest
 @testable import FootballMatches
 
@@ -29,5 +30,18 @@ class FootballMatchesTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
+    func testInitialViewController_whenValidDateIsPassed_ShouldReturnTrue() {
+        //Arrange
+        let sut = InitialViewController()
+        //Pass today's date
+        let date = Date()
+        //Act
+        //
+        let isTodaysDate = sut.formatDate(date: date)
+        
+        //Assert
+        //Pass today's date as yyyy-MM-DD value for a true result
+//        XCTAssertEqual(isTodaysDate, "2021-09-16")
+        XCTAssertNotEqual(isTodaysDate, "2021-11-11")
+    }
 }
