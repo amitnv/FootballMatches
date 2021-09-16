@@ -147,6 +147,7 @@ struct Season: Codable {
 enum Stage: String, Codable {
     case groupStage = "GROUP_STAGE"
     case playOffRound = "PLAY_OFF_ROUND"
+    case preliminarySemiFinal = "PRELIMINARY_SEMI_FINALS"
     case preliminaryFinal = "PRELIMINARY_FINAL"
     case preliminaryRound = "PRELIMINARY_ROUND"
     case qualificationRound1 = "QUALIFICATION_ROUND_1"

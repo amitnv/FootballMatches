@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     //MARK:- Variables
     var matches = Matches()
     var matchDetails = [Match]()
+    var limit = 20
     
     //MARK:- IBOutlet
     @IBOutlet weak var tableViewForMatches: UITableView!
@@ -21,29 +22,34 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableViewForMatches.dataSource = self
-        self.tableViewForMatches.reloadData()
-    }
-    
-    func getTodaysDate() -> String{
-        let date = Date()
-        return formatDate(date: date)
-    }
-    func dateThirtyDaysback() -> String{
-        let toDate = Date()
-        let fromDate = Calendar.current.date(byAdding: .day, value: -30, to: toDate)
-        return formatDate(date: fromDate!)
-        
-    }
-    func formatDate(date : Date) -> String{
-        let df = DateFormatter()
-        df.dateFormat = AppConstants.dateFormat
-        let dateString = df.string(from: date)
-        return dateString
     }
 }
 
 //MARK:- Extension
-extension ViewController: UITableViewDataSource {
+extension ViewController: UITableViewDataSource, UIScrollViewDelegate {
+    
+    //MARK:-Pagination
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == matchDetails.count - 1 {
+            // we are at last cell load more content
+            if matchDetails.count < AppConstants.totalEntries {
+                // we need to bring more matches as there are some pending matches available
+                var index = matchDetails.count
+                limit = index + 20
+                while index < limit {
+                    matchDetails.append(contentsOf: matches.matches!)
+                    index = index + 1
+                }
+                self.perform(#selector(loadTable), with: nil, afterDelay: 0.4)
+            }
+        }
+    }
+    
+    @objc func loadTable() {
+        self.tableViewForMatches.reloadData()
+    }
+    
+    //MARK:- Table View DataSource stubs
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return matchDetails.count
     }
@@ -53,12 +59,25 @@ extension ViewController: UITableViewDataSource {
         if cell == nil {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: "matchesCell")
         }
-        let country = matchDetails[indexPath.row]
-        cell?.textLabel?.text = (country.homeTeam.name ?? "") + AppConstants.versus + (country.awayTeam.name ?? "")
-        if((country.score.winner?.rawValue) != nil) {
-            cell?.detailTextLabel?.text = AppConstants.winner + country.score.winner!.rawValue
+        var winnerName: String = ""
+        
+        //Club or country name, excuse my poor football knowledge
+        let club = matchDetails[indexPath.row]
+        cell?.textLabel?.text = (club.homeTeam.name ?? "") + AppConstants.versus + (club.awayTeam.name ?? "")
+        if((club.score.winner?.rawValue) != nil) {
+            
+            if club.score.winner?.rawValue == AppConstants.awayTeam  {
+                winnerName = AppConstants.winner + club.awayTeam.name!
+            } else if club.score.winner?.rawValue == AppConstants.homeTeam {
+                winnerName = AppConstants.winner + club.homeTeam.name!
+            } else {
+                winnerName = AppConstants.draw
+            }
+            cell?.detailTextLabel?.text = winnerName
+            cell?.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         } else {
             cell?.detailTextLabel?.text = AppConstants.cancelled
+            cell?.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         }
         
         return cell!

@@ -24,18 +24,44 @@ class Service {
             "X-Auth-Token": AppConstants.apiKey,
             "Content-Type": AppConstants.contentTypeJson
         ]
-        AF.request(self.baseUrl +  todaysDate, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers, interceptor: nil, requestModifier: nil).response { (responseData) in
-            print("We got response")
-            guard let data = responseData.data else {
+        AF.request(self.baseUrl + todaysDate, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers, interceptor: nil, requestModifier: nil).response { (responseData) in
+            //            print("We got response")
+            switch(responseData.result) {
+            case .success(_): guard let data = responseData.data else {
                 self.callBack?(nil, false, "")
                 return}
-            do {
-            let matches = try JSONDecoder().decode(Matches.self, from: data)
-                print("Matches == \(matches)")
-                self.callBack?(matches, true, "")
-            } catch {
-                print("Error decoding == \(error)")
-                self.callBack?(nil, false, error.localizedDescription)
+                do {
+                    let matches = try JSONDecoder().decode(Matches.self, from: data)
+                    print("Matches == \(matches)")
+                    self.callBack?(matches, true, "")
+                } catch {
+                    print("Error decoding == \(error)")
+                    self.callBack?(nil, false, error.localizedDescription)
+                }
+                break
+            case .failure(let error):
+                var errorDict = [String : Any]()
+                let errorcode : Int = error._code
+                if let httpStatusCode = responseData.response?.statusCode {
+                    switch(httpStatusCode) {
+                    case 404:
+                        errorDict = ["errormsg" : "Invalid URL: \(self.baseUrl + todaysDate)", "errorCode" : httpStatusCode]
+                    default: break
+                        
+                    }
+                } else {
+                    if (String(errorcode) == "-1009"){
+                        errorDict = ["errormsg" : "Please check your internet connection"]
+                    }
+                    else if(error.localizedDescription != ""){
+                        errorDict = ["errormsg" : error.localizedDescription]
+                    }
+                    else{
+                        errorDict = ["errormsg" : "Server unreachable please try again later."]
+                    }
+                }
+                print(errorDict)
+                break
             }
         }
     }

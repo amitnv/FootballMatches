@@ -10,7 +10,7 @@ import UIKit
 class MostWinsViewController: UIViewController {
     
     //MARK:- Variables
-    var newDet: String = ""
+    var dataForTeamWithHighestWins: String = ""
     
     //MARK:- IBOutlet
     @IBOutlet weak var lblTeamName: UILabel!
@@ -18,13 +18,13 @@ class MostWinsViewController: UIViewController {
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.lblTeamName.text = self.newDet
+        self.lblTeamName.text = self.dataForTeamWithHighestWins
     }
     
     //MARK:- Function
     func setDataReference(dataReference: String)
     {
-        self.newDet = dataReference
+        self.dataForTeamWithHighestWins = dataReference
     }
     
 }
