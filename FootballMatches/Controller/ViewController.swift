@@ -29,7 +29,7 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UIScrollViewDelegate {
     
     //MARK:-Pagination
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    @objc func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == matchDetails.count - 1 {
             // we are at last cell load more content
             if matchDetails.count < AppConstants.totalEntries {
@@ -55,31 +55,37 @@ extension ViewController: UITableViewDataSource, UIScrollViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "matchesCell")
+//        guard let cell1 = tableView.dequeueReusableCell(withIdentifier: AppConstants.matchesCell) else {return UITableViewCell()}
+        var cell = tableView.dequeueReusableCell(withIdentifier: AppConstants.matchesCell)
         if cell == nil {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "matchesCell")
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: AppConstants.matchesCell)
         }
         var winnerName: String = ""
         
-        //Club or country name, excuse my poor football knowledge
-        let club = matchDetails[indexPath.row]
-        cell?.textLabel?.text = (club.homeTeam.name ?? "") + AppConstants.versus + (club.awayTeam.name ?? "")
-        if((club.score.winner?.rawValue) != nil) {
-            
-            if club.score.winner?.rawValue == AppConstants.awayTeam  {
-                winnerName = AppConstants.winner + club.awayTeam.name!
-            } else if club.score.winner?.rawValue == AppConstants.homeTeam {
-                winnerName = AppConstants.winner + club.homeTeam.name!
+        if(matchDetails.count > 0) {
+            //Club or country name, excuse my poor football knowledge
+            let club = matchDetails[indexPath.row]
+            cell?.textLabel?.text = (club.homeTeam.name ?? "") + AppConstants.versus + (club.awayTeam.name ?? "")
+            if((club.score.winner?.rawValue) != nil) {
+                
+                //Add text data to detail Text label view based on winner
+                if club.score.winner?.rawValue == AppConstants.awayTeam  {
+                    winnerName = AppConstants.winner + club.awayTeam.name!
+                } else if club.score.winner?.rawValue == AppConstants.homeTeam {
+                    winnerName = AppConstants.winner + club.homeTeam.name!
+                } else {
+                    winnerName = AppConstants.draw
+                }
+                cell?.detailTextLabel?.text = winnerName
+                cell?.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 12)
             } else {
-                winnerName = AppConstants.draw
+                cell?.detailTextLabel?.text = AppConstants.cancelled
+                cell?.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 12)
             }
-            cell?.detailTextLabel?.text = winnerName
-            cell?.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        } else {
-            cell?.detailTextLabel?.text = AppConstants.cancelled
-            cell?.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         }
-        
+        else {
+            cell?.detailTextLabel!.text = "No matches are being played"
+        }
         return cell!
     }
 }

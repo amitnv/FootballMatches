@@ -23,22 +23,32 @@ class InitialViewController: UIViewController {
     //MARK:- IBAction
     @IBAction func mostWinsTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let secondVC = storyboard.instantiateViewController(withIdentifier: "MostWinsViewController") as! MostWinsViewController
-        let passData = teamWithHighestWins!
+        let secondVC = storyboard.instantiateViewController(withIdentifier: "MostWinsViewController") as! MostWinsViewController
+        let passData = getWins()
         secondVC.setDataReference(dataReference: passData)
-                self.navigationController?.pushViewController(secondVC, animated: true)
+        self.navigationController?.pushViewController(secondVC, animated: true)
     }
-    
+    func getWins() ->String {
+        let winnerName: String
+        if teamWithHighestWins != nil {
+            winnerName = teamWithHighestWins!
+        } else {
+            winnerName = "no team has won"
+        }
+        return winnerName
+        }
     @IBAction func showMatchesTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let secondVC = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-            let moveData = matches
+        let secondVC = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        let moveData = matches
         secondVC.matches = moveData
-        let moveMatchDetails = matchDetails
+        let moveMatchDetails = dataMover()
         secondVC.matchDetails = moveMatchDetails
         self.navigationController?.pushViewController(secondVC, animated: true)
     }
-    
+    func dataMover() -> [Match] {
+        return matchDetails
+    }
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +60,6 @@ class InitialViewController: UIViewController {
     func callFootballAPI(dateFromValue: String) {
         let service = Service(baseUrl: "https://api.football-data.org/v2/competitions/2001/matches?dateFrom=\(dateFromValue)&dateTo=")
         service.getAllMatches(todaysDate: getTodaysDate())
-        print("date from: \(dateFromValue), date to: \(getTodaysDate())")
         service.completitonHandler { [weak self](matches, status, message) in
             if status {
                 guard let self = self else {return}
@@ -89,33 +98,9 @@ class InitialViewController: UIViewController {
     func compareWins() {
         //count of matches
         let matchcount = matchDetails.count
-        print("No. of matches is \(matchcount)")
-        if matchcount > 0 {
-            for allStat in matchDetails {
-                //check if match is finished or not because only finished matches will have result
-                if allStat.status == Status.finished {
-                    //check if match winner value was away_team or home_team and eliminate draw/null results
-                    if allStat.score.winner != nil {
-                        if allStat.score.winner != Winner.draw {
-                            //                        print("PPP: \(String(describing: allStat.score.winner?.rawValue))")
-                            
-                            //Store hometeam or awayteam id based on that
-                            if allStat.score.winner?.rawValue == AppConstants.awayTeam {
-                                //                            print("ids are: \(String(describing: allStat.awayTeam.id))!")
-                                winnerIDs.append(allStat.awayTeam.id!)
-                                
-                            } else {
-                                //                            print("ids are: \(String(describing: allStat.homeTeam.id))!")
-                                winnerIDs.append(allStat.homeTeam.id!)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
-//        print(winnerIDs)
-        if winnerIDs.isEmpty {
+
+        //Function to return teamWithHighestWin
+        if winnerIDGenerator(noOfMatches: matchcount).isEmpty {
             //logic for last completed game, Improvement: Explore other API?
             while (matchcount == 0) {
                 callFootballAPI(dateFromValue: dateRewindBy(rewindInt: moveDateBackBy))
@@ -155,6 +140,33 @@ class InitialViewController: UIViewController {
 //                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
 //        // show the alert
 //                self.present(alert, animated: true, completion: nil)
+    }
+    
+    func winnerIDGenerator(noOfMatches: Int) -> [Int] {
+        if noOfMatches > 0 {
+            for allStat in matchDetails {
+                //check if match is finished or not because only finished matches will have result
+                if allStat.status == Status.finished {
+                    //check if match winner value was away_team or home_team and eliminate draw/null results
+                    if allStat.score.winner != nil {
+                        if allStat.score.winner != Winner.draw {
+                            //                        print("PPP: \(String(describing: allStat.score.winner?.rawValue))")
+                            
+                            //Store hometeam or awayteam id based on that
+                            if allStat.score.winner?.rawValue == AppConstants.awayTeam {
+                                //                            print("ids are: \(String(describing: allStat.awayTeam.id))!")
+                                winnerIDs.append(allStat.awayTeam.id!)
+                                
+                            } else {
+                                //                            print("ids are: \(String(describing: allStat.homeTeam.id))!")
+                                winnerIDs.append(allStat.homeTeam.id!)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return winnerIDs
     }
 }
 

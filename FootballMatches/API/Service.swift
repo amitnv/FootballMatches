@@ -11,7 +11,7 @@ import Alamofire
 class Service {
     
     //MARK:- Variables
-    fileprivate var baseUrl = ""
+    var baseUrl = ""
     typealias matchesCallBack = (_ matches:Matches?, _ status: Bool, _ message: String) -> Void
     var callBack: matchesCallBack?
     init(baseUrl: String) {
@@ -21,11 +21,12 @@ class Service {
     //MARK: - getAllMatches
     func getAllMatches(todaysDate: String) {
         let headers: HTTPHeaders = [
-            "X-Auth-Token": AppConstants.apiKey,
-            "Content-Type": AppConstants.contentTypeJson
+            AppConstants.authorization: AppConstants.apiKey,
+            AppConstants.contentType: AppConstants.contentTypeJson
         ]
         AF.request(self.baseUrl + todaysDate, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers, interceptor: nil, requestModifier: nil).response { (responseData) in
             //            print("We got response")
+            //Test case for switch statement
             switch(responseData.result) {
             case .success(_): guard let data = responseData.data else {
                 self.callBack?(nil, false, "")
@@ -35,7 +36,7 @@ class Service {
                     print("Matches == \(matches)")
                     self.callBack?(matches, true, "")
                 } catch {
-                    print("Error decoding == \(error)")
+//                    print("Error decoding == \(error)")
                     self.callBack?(nil, false, error.localizedDescription)
                 }
                 break

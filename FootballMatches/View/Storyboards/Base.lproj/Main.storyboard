@@ -11,7 +11,7 @@
         <!--Football matches-->
         <scene sceneID="Vg1-h7-xiq">
             <objects>
-                <viewController id="pjj-FY-0fl" customClass="InitialViewController" customModule="FootballMatches" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InitialViewController" id="pjj-FY-0fl" customClass="InitialViewController" customModule="FootballMatches" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H8R-9X-8cd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

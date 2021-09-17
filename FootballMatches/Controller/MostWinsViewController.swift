@@ -18,7 +18,7 @@ class MostWinsViewController: UIViewController {
     //MARK:- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.lblTeamName.text = self.dataForTeamWithHighestWins
+        self.lblTeamName.text = self.dataForTeamWithHighestWins + AppConstants.celebrationEmojiText
     }
     
     //MARK:- Function

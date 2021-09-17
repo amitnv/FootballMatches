@@ -13,6 +13,8 @@
 		7B8866B826F287EE005E33C5 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8866B726F287EE005E33C5 /* InitialViewController.swift */; };
 		7B8866BA26F28CE8005E33C5 /* MostWinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8866B926F28CE8005E33C5 /* MostWinsViewController.swift */; };
 		7B8866BC26F350F0005E33C5 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8866BB26F350F0005E33C5 /* AppConstants.swift */; };
+		7B8866C126F49F51005E33C5 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8866C026F49F51005E33C5 /* ViewControllerTests.swift */; };
+		7B8866C326F4B716005E33C5 /* InitialViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8866C226F4B716005E33C5 /* InitialViewControllerTests.swift */; };
 		7BD9A86326F0F22C00148AD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD9A86226F0F22C00148AD0 /* AppDelegate.swift */; };
 		7BD9A86526F0F22C00148AD0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD9A86426F0F22C00148AD0 /* SceneDelegate.swift */; };
 		7BD9A86726F0F22C00148AD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD9A86626F0F22C00148AD0 /* ViewController.swift */; };
@@ -49,6 +51,8 @@
 		7B8866B726F287EE005E33C5 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		7B8866B926F28CE8005E33C5 /* MostWinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostWinsViewController.swift; sourceTree = "<group>"; };
 		7B8866BB26F350F0005E33C5 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		7B8866C026F49F51005E33C5 /* ViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
+		7B8866C226F4B716005E33C5 /* InitialViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewControllerTests.swift; sourceTree = "<group>"; };
 		7BD9A85F26F0F22C00148AD0 /* FootballMatches.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FootballMatches.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD9A86226F0F22C00148AD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BD9A86426F0F22C00148AD0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +118,57 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7B8866C426F4E0D7005E33C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7BD9A89426F0F56900148AD0 /* Matches.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7B8866C526F4E11C005E33C5 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				7BD9A86826F0F22C00148AD0 /* Main.storyboard */,
+				7BD9A86D26F0F22E00148AD0 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		7B8866C626F4E12C005E33C5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7B8866C526F4E11C005E33C5 /* Storyboards */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7B8866C726F4E141005E33C5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7B8866B726F287EE005E33C5 /* InitialViewController.swift */,
+				7BD9A86626F0F22C00148AD0 /* ViewController.swift */,
+				7B8866B926F28CE8005E33C5 /* MostWinsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7B8866C826F4E17C005E33C5 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				7BD9A89226F0F33000148AD0 /* Service.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		7B8866C926F4E1E7005E33C5 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				7B8866BB26F350F0005E33C5 /* AppConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		7BD9A85626F0F22C00148AD0 = {
 			isa = PBXGroup;
 			children = (
@@ -141,15 +196,12 @@
 			children = (
 				7BD9A86226F0F22C00148AD0 /* AppDelegate.swift */,
 				7BD9A86426F0F22C00148AD0 /* SceneDelegate.swift */,
-				7BD9A89226F0F33000148AD0 /* Service.swift */,
-				7BD9A89426F0F56900148AD0 /* Matches.swift */,
-				7BD9A86826F0F22C00148AD0 /* Main.storyboard */,
-				7B8866B726F287EE005E33C5 /* InitialViewController.swift */,
-				7BD9A86626F0F22C00148AD0 /* ViewController.swift */,
-				7B8866BB26F350F0005E33C5 /* AppConstants.swift */,
-				7B8866B926F28CE8005E33C5 /* MostWinsViewController.swift */,
+				7B8866C826F4E17C005E33C5 /* API */,
+				7B8866C426F4E0D7005E33C5 /* Model */,
+				7B8866C626F4E12C005E33C5 /* View */,
+				7B8866C726F4E141005E33C5 /* Controller */,
+				7B8866C926F4E1E7005E33C5 /* Constants */,
 				7BD9A86B26F0F22E00148AD0 /* Assets.xcassets */,
-				7BD9A86D26F0F22E00148AD0 /* LaunchScreen.storyboard */,
 				7BD9A87026F0F22E00148AD0 /* Info.plist */,
 			);
 			path = FootballMatches;
@@ -158,8 +210,10 @@
 		7BD9A87826F0F22E00148AD0 /* FootballMatchesTests */ = {
 			isa = PBXGroup;
 			children = (
-				7BD9A87926F0F22E00148AD0 /* FootballMatchesTests.swift */,
 				7BD9A87B26F0F22E00148AD0 /* Info.plist */,
+				7BD9A87926F0F22E00148AD0 /* FootballMatchesTests.swift */,
+				7B8866C026F49F51005E33C5 /* ViewControllerTests.swift */,
+				7B8866C226F4B716005E33C5 /* InitialViewControllerTests.swift */,
 			);
 			path = FootballMatchesTests;
 			sourceTree = "<group>";
@@ -436,6 +490,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B8866C326F4B716005E33C5 /* InitialViewControllerTests.swift in Sources */,
+				7B8866C126F49F51005E33C5 /* ViewControllerTests.swift in Sources */,
 				7BD9A87A26F0F22E00148AD0 /* FootballMatchesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
